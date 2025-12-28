@@ -2,270 +2,161 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>ABLE HIGH SCHOOL | 가능고등학교</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <title>가능고등학교</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
         
         * { font-family: 'NanumSquare', sans-serif !important; }
+        body { margin: 0; padding: 0; background-color: #f4f7f9; color: #333; }
         
-        :root {
-            --able-green: #013220;
-            --able-gold: #D4AF37;
-        }
-
-        body { margin: 0; padding: 0; background-color: #f0f2f0; color: #1a1a1a; }
-
-        .nav-item { position: relative; }
-        .submenu { 
-            display: none; 
-            position: absolute; 
-            top: 100%; 
-            left: 50%; 
-            transform: translateX(-50%);
-            width: 240px; 
-            background: var(--able-green); 
-            z-index: 100;
-            border-top: 3px solid var(--able-gold);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-        }
-        .nav-item:hover .submenu { display: block; }
-        .submenu li a {
-            display: block;
-            padding: 15px 20px;
-            color: #eee;
-            font-size: 14px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s;
-        }
-        .submenu li a:hover { background: #024d32; color: var(--able-gold); padding-left: 25px; }
-
-        .page-content { display: none; animation: fadeIn 0.5s ease; }
+        /* 메뉴 활성화 스타일 */
+        .nav-active { background: #003366 !important; color: #ffeb3b !important; border-bottom: 4px solid #ffeb3b; }
+        
+        /* 컨텐츠 전환 애니메이션 */
+        .page-content { display: none; animation: fadeIn 0.4s ease-in-out; }
         .page-content.active { display: block; }
 
         @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
+        .main-blue { background-color: #004680; }
     </style>
 </head>
 <body>
 
-    <div class="bg-black text-[10px] text-red-500 py-1 text-center font-bold tracking-widest">
-        [보안 알림] 본 사이트는 가능고등학교 학내 전용망입니다. 외부인의 무단 접속은 법적 처벌의 대상이 됩니다.
-    </div>
-
-    <header class="bg-white border-b-2 border-[#D4AF37] py-8">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <a href="javascript:void(0)" onclick="showPage('main')" class="flex items-center gap-4">
-                <div class="w-16 h-16 bg-[#013220] text-[#D4AF37] rounded-full flex items-center justify-center font-bold text-3xl border-2 border-[#D4AF37] shadow-xl">A</div>
-                <div>
-                    <h1 class="text-3xl font-extrabold text-[#013220] tracking-tighter">가능고등학교</h1>
-                    <p class="text-xs text-[#B8860B] font-bold tracking-[0.3em] uppercase">Able High School Elite Campus</p>
-                </div>
-            </a>
-            <div class="text-right hidden md:block">
-                <p class="text-[11px] text-gray-400 font-bold mb-1">Elite Leadership, Infinite Possibility</p>
-                <div class="flex gap-4 text-xs font-bold text-gray-600">
-                    <a href="#" class="hover:text-[#D4AF37]">로그인</a>
-                    <span>|</span>
-                    <a href="#" class="hover:text-[#D4AF37]">회원가입</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <nav class="bg-[#013220] w-full sticky top-0 z-50 shadow-2xl">
-        <ul id="gnb" class="max-w-6xl mx-auto flex justify-center text-white font-bold">
-            <li class="nav-item">
-                <a href="#" class="block px-12 py-5 hover:text-[#D4AF37]">학교소개</a>
-                <ul class="submenu">
-                    <li><a href="javascript:void(0)" onclick="showPage('intro')">교육이념</a></li>
-                    <li><a href="javascript:void(0)">학교안내 (가능여고/가능남고)</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('uniform')">지정 복장 규정</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="block px-12 py-5 hover:text-[#D4AF37]">학사행정</a>
-                <ul class="submenu">
-                    <li><a href="javascript:void(0)" onclick="showPage('calendar')">연간 학사 일정</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('rules')">학생 생활 규율</a></li>
-                    <li><a href="javascript:void(0)">벌점 현황 조회</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="block px-12 py-5 hover:text-[#D4AF37]">에이블제</a>
-                <ul class="submenu">
-                    <li><a href="javascript:void(0)" onclick="showPage('festival')">축제 개요</a></li>
-                    <li><a href="javascript:void(0)">동아리 부스 안내</a></li>
-                    <li><a href="javascript:void(0)">불꽃 축제</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="block px-12 py-5 hover:text-[#D4AF37]">학생기구</a>
-                <ul class="submenu">
-                    <li><a href="javascript:void(0)">회장단</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('rules')">선도부</a></li>
-                    <li><a href="javascript:void(0)">문화홍보부</a></li>
-                    <li><a href="javascript:void(0)">원예환경부</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-
-    <main class="max-w-6xl mx-auto px-6 py-12 min-h-[700px]">
-        
-        <div id="page-main" class="page-content active">
-            <div class="relative h-[550px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white mb-12">
-                <img src="https://poft.uk/kyryll/ablehigh-b.webp" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/30 flex flex-col justify-center items-center text-center">
-                    <h2 class="text-5xl font-black text-white mb-4 drop-shadow-2xl italic">"NOBLESSE OBLIGE"</h2>
-                    <p class="text-2xl text-[#D4AF37] font-bold">스스로를 증명하는 자만이 가능성을 소유한다.</p>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-red-700">
-                    <h3 class="text-red-700 font-black mb-4">⚠️ 선도부 정기 점검 현황</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">서관(여고) 경계 무단 월담 남학생 2명 적발. 선도부 심의 후 벌점 누적 처리 완료.</p>
-                </div>
-                <div class="bg-[#013220] p-8 rounded-2xl shadow-lg text-white">
-                    <h3 class="text-[#D4AF37] font-black mb-4">✨ 에이블제안내</h3>
-                    <p class="text-sm opacity-80 leading-relaxed">11월 24일 시작. 1년 중 유일하게 가능여고와 가능남고 사이의 경계가 해제되는 기간입니다.</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-[#D4AF37]">
-                    <h3 class="text-gray-800 font-black mb-4">❄️ 겨울방학(동계 휴학)</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">12월 21일부터 휴학이 시작됩니다. 기숙사생은 선도부의 퇴소 점검을 받으십시오.</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="page-intro" class="page-content bg-white p-12 shadow-2xl rounded-3xl border border-gray-100">
-            <h3 class="text-4xl font-black text-[#013220] mb-8 border-b-4 border-[#D4AF37] pb-4 inline-block">Educating the Elite</h3>
-            <div class="text-lg text-gray-700 leading-[2] space-y-6">
-                <p>가능고등학교는 단순한 배움의 장을 넘어, 대한민국을 이끌어갈 상위 1%의 리더를 양성하는 요람입니다.</p>
-                <p>본교는 엄격한 규율과 절제된 생활만이 최고의 가능성을 이끌어낼 수 있다고 믿습니다. 이원화 체제(서관-가능여고, 동관-가능남고)의 분리 운영은 학업에만 전념할 수 있는 환경을 보장합니다.</p>
-                <div class="bg-gray-50 p-8 rounded-xl border-l-8 border-[#013220]">
-                    <p class="italic text-gray-600">"평범함과 타협하지 않는 자, 가능고의 문을 두드려라. 이곳에서 당신은 무엇이든 가능한 인재로 거듭날 것이다."</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="page-uniform" class="page-content bg-white p-12 shadow-2xl rounded-3xl">
-            <h3 class="text-3xl font-black text-[#013220] mb-10">교복 기본 규정</h3>
-            <div class="grid grid-cols-2 gap-12">
-                <div class="border-2 border-[#D4AF37] p-8 rounded-2xl bg-green-50/30 text-center">
-                    <h4 class="text-xl font-bold mb-6 text-[#013220] border-b border-[#D4AF37] pb-2">서관-여학생</h4>
-                    <ul class="space-y-4 text-gray-700 font-bold">
-                        <li class="bg-white py-3 rounded shadow-sm">• 화이트 실크 셔츠</li>
-                        <li class="bg-white py-3 rounded shadow-sm">• 딥 그린 리본</li>
-                        <li class="bg-white py-3 rounded shadow-sm">• 딥 그린 스커트</li>
-                    </ul>
-                </div>
-                <div class="border-2 border-gray-300 p-8 rounded-2xl bg-gray-50/50 text-center">
-                    <h4 class="text-xl font-bold mb-6 text-[#013220] border-b border-gray-300 pb-2">동관-남학생</h4>
-                    <ul class="space-y-4 text-gray-700 font-bold">
-                        <li class="bg-white py-3 rounded shadow-sm">• 화이트 실크 셔츠</li>
-                        <li class="bg-white py-3 rounded shadow-sm">• 딥 그린 타이</li>
-                        <li class="bg-white py-3 rounded shadow-sm">• 다크 그레이 슬랙스</li>
-                    </ul>
-                </div>
-            </div>
-            <p class="mt-8 text-center text-xs text-gray-400">* 사복은 반드시 교복 위에 착용해야 합니다.</p>
-        </div>
-
-        <div id="page-calendar" class="page-content bg-white p-12 shadow-2xl rounded-3xl">
-            <h3 class="text-3xl font-bold text-[#013220] mb-8 border-l-8 border-[#013220] pl-6">Academic Calendar</h3>
-            <div class="grid grid-cols-1 gap-4">
-                <div class="flex items-center gap-6 p-5 bg-gray-50 rounded-xl border border-gray-200">
-                    <span class="w-40 font-bold text-[#D4AF37] text-lg">12.21 ~ 03.01</span>
-                    <span class="text-gray-800 font-bold">겨울방학 (동계 휴학 기간)</span>
-                </div>
-                <div class="flex items-center gap-6 p-5 bg-[#013220] text-white rounded-xl shadow-lg border-2 border-[#D4AF37]">
-                    <span class="w-40 font-bold text-[#D4AF37] text-lg">11.24 ~ 11.28</span>
-                    <span class="font-bold text-lg">제 5회 에이블제- 경계 해제</span>
-                </div>
-                <div class="flex items-center gap-6 p-5 bg-gray-50 rounded-xl border border-gray-200">
-                    <span class="w-40 font-bold text-[#D4AF37] text-lg">12.20</span>
-                    <span class="text-gray-800 font-bold">2학기 종료 / 졸업 및 종업식</span>
-                </div>
-            </div>
-        </div>
-
-        <div id="page-rules" class="page-content bg-white p-12 shadow-2xl rounded-3xl">
-            <h3 class="text-3xl font-black text-red-800 mb-8">Campus Discipline Code</h3>
-            <div class="space-y-8">
-                <div class="p-8 bg-red-50 border-r-8 border-red-700 rounded-xl">
-                    <h4 class="font-bold text-red-900 text-xl mb-4">남녀 분리 및 공간 격리</h4>
-                    <p class="text-gray-700 leading-relaxed">동관과 서관은 물리적으로 분리 운영됩니다. 허가 없이 경계를 침범할 시 선도부에 의해 벌점이 부여됩니다. 점심시간 이후 동아리 활동 시간에 한하여 교류가 가능합니다.</p>
-                </div>
-                <div class="p-8 bg-gray-50 border-r-8 border-[#013220] rounded-xl">
-                    <h4 class="font-bold text-[#013220] text-xl mb-4">학생기구 운영 안내</h4>
-                    <p class="text-gray-700 leading-relaxed mb-4">본교의 질서는 학생회 산하 4대 부서에 의해 유지됩니다.</p>
-                    <ul class="grid grid-cols-2 gap-4 text-sm font-bold">
-                        <li class="bg-white p-3 border border-gray-200 rounded">• 회장단 (회장/부회장/비서)</li>
-                        <li class="bg-white p-3 border border-red-200 text-red-800 rounded">• 선도부 (교내 질서 유지)</li>
-                        <li class="bg-white p-3 border border-gray-200 rounded">• 문화홍보부 (에이블제 기획)</li>
-                        <li class="bg-white p-3 border border-gray-200 rounded">• 원예환경부 (옥상 정원 관리)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div id="page-festival" class="page-content bg-white p-0 shadow-2xl rounded-3xl overflow-hidden">
-            <div class="relative h-64 flex items-center justify-center">
-                <img src="https://poft.uk/kyryll/ablehigh-night.webp" class="absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/50"></div>
-                <h3 class="relative z-10 text-4xl font-black text-[#D4AF37] italic">에이블제</h3>
-            </div>
-            <div class="p-12">
-                <div class="grid grid-cols-2 gap-12">
-                    <div class="space-y-6">
-                        <h4 class="text-2xl font-bold text-[#013220]">축제 개요</h4>
-                        <p class="text-gray-600 leading-loose">
-                            1년 중 유일하게 가능고등학교의 모든 경계가 해제됩니다. 동관과 서관이 통합 운영되며, 문화홍보부의 기획 하에 다양한 부스 및 피날레 불꽃 축제가 거행됩니다.
-                        </p>
-                        <div class="bg-green-50 p-6 rounded-xl border border-green-100">
-                            <h5 class="font-bold text-green-800 mb-2">🎪 주요 콘텐츠</h5>
-                            <ul class="text-sm text-green-700 space-y-2">
-                                <li>- 서관 메이드 카페</li>
-                                <li>- 문예부 문학상점</li>
-                                <li>- 밴드부 옥상공연</li>
-                            </ul>
+    <div id="wrap">
+        <div class="bg-white border-b py-5">
+            <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+                <div class="logo">
+                    <a href="javascript:void(0)" onclick="showPage('main')" class="flex items-center gap-3 text-decoration-none">
+                        <div class="w-12 h-12 main-blue text-white rounded-xl flex items-center justify-center font-bold text-2xl">可</div>
+                        <div>
+                            <h1 class="text-2xl font-extrabold text-[#004680] m-0">가능고등학교</h1>
+                            <p class="text-[10px] text-gray-500 font-bold tracking-widest uppercase m-0">Able High School</p>
                         </div>
-                    </div>
-                    <div class="bg-black p-10 rounded-3xl text-center border-4 border-[#D4AF37] flex flex-col justify-center">
-                        <h4 class="text-[#D4AF37] text-2xl font-black mb-4">GRAND FINALE</h4>
-                        <p class="text-white text-lg font-bold italic mb-4">"음악과 빛의 향연, 에이블 불꽃축제"</p>
-                        <p class="text-gray-400 text-xs leading-relaxed">폐막식 직후, 교내 모든 조명이 소등됩니다.<br>옥상 정원과 운동장에서 관람하는 대규모 불꽃놀이는 본교의 자랑입니다.</p>
-                    </div>
+                    </a>
+                </div>
+                <div class="flex items-center border-b-2 border-[#004680] py-1">
+                    <input type="text" placeholder="검색어를 입력해주세요" class="border-none outline-none text-sm w-48 px-2">
+                    <button class="cursor-pointer">🔍</button>
                 </div>
             </div>
         </div>
 
-    </main>
+        <nav class="main-blue w-full sticky top-0 z-50 shadow-lg">
+            <ul id="gnb" class="list-none m-0 p-0 max-w-6xl mx-auto flex justify-center">
+                <li><a href="javascript:void(0)" id="menu-intro" onclick="showPage('intro')" class="block px-10 py-4 text-white no-underline font-bold text-lg transition-all hover:bg-[#003366]">학교소개</a></li>
+                <li><a href="javascript:void(0)" id="menu-edu" onclick="showPage('edu')" class="block px-10 py-4 text-white no-underline font-bold text-lg transition-all hover:bg-[#003366]">교육활동</a></li>
+                <li><a href="javascript:void(0)" id="menu-study" onclick="showPage('study')" class="block px-10 py-4 text-white no-underline font-bold text-lg transition-all hover:bg-[#003366]">학습활동</a></li>
+                <li><a href="javascript:void(0)" id="menu-news" onclick="showPage('news')" class="block px-10 py-4 text-white no-underline font-bold text-lg transition-all hover:bg-[#003366]">학교소식</a></li>
+            </ul>
+        </nav>
 
-    <footer class="bg-[#013220] text-[#D4AF37]/50 py-16 border-t-8 border-[#D4AF37]">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 gap-10">
-            <div>
-                <h4 class="text-white font-black text-xl mb-4">ABLE HIGH SCHOOL FOUNDATION</h4>
-                <address class="not-italic text-sm leading-loose">
-                    경기도 가능시 가능로 35<br>
-                    대표전화: 031-123-4567 | 행정실: 031-123-4568
-                </address>
+        <main class="max-w-6xl mx-auto px-4 py-12 min-h-[500px]">
+            
+            <div id="page-main" class="page-content active text-center py-20">
+                <h2 class="text-4xl font-extrabold text-gray-800 mb-4">가능성을 현실로, ABLE 가능고등학교</h2>
+                <p class="text-xl text-gray-600 mb-8">우리 학교 홈페이지에 오신 것을 환영합니다.</p>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-white p-8 shadow-md rounded-xl">
+                        <div class="text-4xl mb-4">🏫</div>
+                        <h3 class="font-bold text-lg mb-2">학교소개</h3>
+                        <p class="text-sm text-gray-500">가능고의 비전과 역사를 소개합니다.</p>
+                    </div>
+                    <div class="bg-white p-8 shadow-md rounded-xl">
+                        <div class="text-4xl mb-4">📚</div>
+                        <h3 class="font-bold text-lg mb-2">교육활동</h3>
+                        <p class="text-sm text-gray-500">학생들의 꿈을 키우는 교육과정입니다.</p>
+                    </div>
+                    <div class="bg-white p-8 shadow-md rounded-xl">
+                        <div class="text-4xl mb-4">📢</div>
+                        <h3 class="font-bold text-lg mb-2">공지사항</h3>
+                        <p class="text-sm text-gray-500">학교의 새로운 소식을 확인하세요.</p>
+                    </div>
+                </div>
             </div>
-            <div class="text-right">
-                <p class="text-white/80 font-bold mb-4 italic">"Believe in your Ability, Reach your Possibility."</p>
-                <p class="text-[10px] tracking-widest uppercase">Copyright (C) ABLE HIGH SCHOOL. All rights reserved.</p>
+
+            <div id="page-intro" class="page-content bg-white p-10 shadow-md rounded-lg">
+                <h3 class="text-3xl font-bold border-b-2 border-gray-800 pb-4 mb-6">학교소개</h3>
+                <div class="leading-loose text-gray-700">
+                    <h4 class="text-xl font-bold text-blue-800 mb-4">교훈: 스스로 서고 함께 가자</h4>
+                    <p class="mb-4">가능고등학교는 학생들이 자신의 잠재력을 발견하고, 미래 사회의 핵심 인재로 성장할 수 있도록 최적의 교육 환경을 제공합니다.</p>
+                    <div class="bg-gray-50 p-6 border-l-4 border-blue-800 my-6">
+                        <strong>연혁</strong>
+                        <ul class="list-disc ml-5 mt-2">
+                            <li>2020년 03월 가능고등학교 개교</li>
+                            <li>2023년 02월 제1회 졸업식</li>
+                            <li>2025년 12월 디지털 선도학교 지정</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    </footer>
+
+            <div id="page-edu" class="page-content bg-white p-10 shadow-md rounded-lg text-center">
+                <h3 class="text-3xl font-bold border-b-2 border-gray-800 pb-4 mb-6 text-left">교육활동</h3>
+                <p class="text-lg py-20 text-gray-400">교과별 운영 계획 및 창의적 체험활동 준비 중입니다.</p>
+            </div>
+
+            <div id="page-news" class="page-content bg-white p-10 shadow-md rounded-lg">
+                <h3 class="text-3xl font-bold border-b-2 border-gray-800 pb-4 mb-8">공지사항</h3>
+                <table class="w-full text-sm text-center border-t-2 border-gray-800">
+                    <thead class="bg-gray-50 border-b border-gray-300">
+                        <tr>
+                            <th class="py-4 w-16">번호</th>
+                            <th class="py-4">제목</th>
+                            <th class="py-4 w-28">등록일</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b font-bold text-red-600">
+                            <td class="py-4 text-center">공지</td>
+                            <td class="py-4 text-left px-6">2026학년도 신입생 합격자 발표 안내</td>
+                            <td class="py-4 font-light">2025.12.23</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-4 text-gray-400">811</td>
+                            <td class="py-4 text-left px-6">겨울방학 중 방과후 학교 수강 신청</td>
+                            <td class="py-4 font-light text-gray-400">2025.12.21</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+
+        <footer class="bg-gray-900 text-gray-400 py-10 mt-20">
+            <div class="max-w-6xl mx-auto px-4 text-xs">
+                <address class="not-italic mb-2">경기도 가능시 가능로 35, 가능고등학교</address>
+                <p>교무실: 031) 123-4567 | FAX: 031) 123-4569</p>
+                <p class="mt-4 font-bold text-gray-500 tracking-widest uppercase">Copyright (C) ABLE HIGH SCHOOL. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
 
     <script>
         function showPage(pageId) {
+            // 1. 모든 페이지 컨텐츠 숨기기
             const pages = document.querySelectorAll('.page-content');
-            pages.forEach(p => p.classList.remove('active'));
+            pages.forEach(page => page.classList.remove('active'));
+
+            // 2. 모든 메뉴의 활성화 스타일 제거
+            const menus = document.querySelectorAll('#gnb a');
+            menus.forEach(menu => menu.classList.remove('nav-active'));
+
+            // 3. 선택한 페이지 보여주기
             document.getElementById('page-' + pageId).classList.add('active');
+
+            // 4. 선택한 메뉴 활성화 스타일 적용 (메인 페이지 제외)
+            if (pageId !== 'main') {
+                const activeMenu = document.getElementById('menu-' + pageId);
+                if (activeMenu) activeMenu.classList.add('nav-active');
+            }
+            
+            // 페이지 상단으로 이동
             window.scrollTo(0, 0);
         }
     </script>
